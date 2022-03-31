@@ -1,0 +1,75 @@
+//Name: Josh Martin Acoba
+//Activity: OE6
+//Year&Section: BSIE 1-1
+//Date: 03/31/22
+
+#include<iostream>
+
+using namespace std;
+
+const int SIZE = 20;
+void partially_filled(int arr[], int size, int& number_used);
+
+int search(const int a[], int number_used, int target);
+
+
+int main() {
+
+    int arr[SIZE], list_size = 0, target;
+    partially_filled(arr, list_size, target);
+
+    char ans = 0;
+    int result;
+
+    do
+    {
+        cout << "Enter a number to search for : ";
+        cin >> target;
+        result = search(arr, list_size, target);
+        if (result == -1)
+            cout << target << " is not on the list.\n";
+        else
+            cout << target << " is stored in array position "
+            << result << endl
+            << "(Remember: the first position is 0.)\n";
+        cout << "Search again? (y/n followed by Return):";
+        cin >> ans;
+    } while ((ans != 'n') && (ans != 'N'));
+
+    cout << "End of program.\n";
+
+    cout << "\nNumbers >> ";
+    for (int x = 0; x < SIZE; x++) {
+        cout << "[" << arr[x] << "] ";
+        if (arr[x] < 0) {
+        }
+    }
+    return 0;
+}
+
+void partially_filled(int arr[], int size, int& number_used) {
+    for (int x = 0; x < SIZE; x++) {
+        cout << "Enter 20 non negative Whole Numbers (Negative to end):";
+        cin >> arr[x];
+        if (arr[x] < 0) {
+            break;
+
+        }
+    }
+}
+
+int search(const int a[], int number_used, int target)
+{
+    int index = 0;
+    bool found = false;
+    while ((!found) && (index < number_used))
+        if (target == a[index])
+            found = true;
+        else
+            index++;
+
+    if (found)
+        return index;
+    else
+        return -1;
+}
